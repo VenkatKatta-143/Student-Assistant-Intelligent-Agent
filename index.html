@@ -60,7 +60,7 @@
 
     <script>
       var isClose=true;
-        const stopwords = ["in","of","are","different","types","of","available","offered","by", "the", "a", "an", "any", "is", "can", "who", "what", "why", "whom"];
+        const stopwords = ["in","of","are","different","types","of","available","offered","by", "the", "a", "an", "any", "is", "can", "who", "what", "why", "whom","how","i","find"];
         var editor = "sorts\n" +
             "    #college={texasTechUniversity}.\n" +
             "    #departments={computerScience,electricalAndComputerEngineering,mechanicalEngineering}.\n" +
@@ -74,37 +74,62 @@
             "    department(#departments).\n" +
             "    course(#courses).\n" +
             "    departmentCourse(#courses,#departments).\n" +
-            "    coursePrerequisites(#courses,#prerequisites).\n" +
-            "    accommodation(#college,#typesofaccommodation).\n" +
-            "    affordableAccommodation(#college,#offCampusStay).\n" +
+            "    coursePrerequisites(#prerequisites,#courses).\n" +
+            "    accommodation(#typesofaccommodation,#college).\n" +
+            "    affordableAccommodation(#offCampusStay,#college).\n" +
             "rules\n" +
             "    collegeDepartment(computerScience,texasTechUniversity).\n" +
             "    collegeDepartment(electricalAndComputerEngineering,texasTechUniversity).\n" +
             "    collegeDepartment(mechanicalEngineering,texasTechUniversity).\n" +
-            "    department(computerScience).\n"
+            "    department(computerScience).\n" +
             "    department(electricalAndComputerEngineering).\n" +
             "    department(mechanicalEngineering).\n" +
             "    course(cS5381AnalysisOfAlgorithm).\n" +
             "    departmentCourse(m2207engineeringDesignGraphics,mechanicalEngineering).\n" +
             "    departmentCourse(m2301statics,mechanicalEngineering).\n" +
-            "    coursePrerequisites(cS5381AnalysisOfAlgorithm,designAndAnalysisOfAlgorithm).\n" +
-            "    coursePrerequisites(cS5352AdvancedOperatingSystem,operatingSystems).\n" +
+            "    departmentCourse(m2315computerAidedAnalysis,mechanicalEngineering).\n" +
+            "    departmentCourse(m3303solidMechanics,mechanicalEngineering).\n" +
+            "    departmentCourse(m3333dynamicsSystemsAndVibrations,mechanicalEngineering).\n" +
+            "    departmentCourse(m5358biomaterials,mechanicalEngineering).\n" +
+            "    departmentCourse(m5301analysisOfEngineering,mechanicalEngineering).\n" +
+            "    departmentCourse(m4334controlOfDynamicsSystems,mechanicalEngineering).\n" +
+            "    departmentCourse(eCE5316PowerElectronics,electricalAndComputerEngineering).\n" +
+            "    departmentCourse(eCE5320DCDCConverterDesignandTest,electricalAndComputerEngineering).\n" +
+            "    departmentCourse(eCE5321DesignandAnalysisofAnalogIntegratedCircuits,electricalAndComputerEngineering).\n" +
+            "    departmentCourse(eCE5310IntroductiontoVLSIDesign,electricalAndComputerEngineering).\n" +
+            "    departmentCourse(eCE5312LowPowerVLSI,electricalAndComputerEngineering).\n" +
+            "    departmentCourse(eCE5314SolidStateDevices,electricalAndComputerEngineering).\n" +
+            "    departmentCourse(eCE5322RandomSignalsandSystems,electricalAndComputerEngineering).\n" +
+            "    departmentCourse(eCE5323ModernCommunicationCircuits,electricalAndComputerEngineering).\n" +
+            "    departmentCourse(eCE5325TelecommunicationNetworks,electricalAndComputerEngineering).\n" +
+            "    departmentCourse(cS5381AnalysisOfAlgorithm,computerScience).\n" +
+            "    departmentCourse(cS5368IntelligentSystems,computerScience).\n" +
+            "    departmentCourse(cS5383TheoryOfAutomata,computerScience).\n" +
+            "    departmentCourse(cS5352AdvancedOperatingSystem,computerScience).\n" +
+            "    departmentCourse(cS5340IntroToInformationAndComputerSecurity,computerScience).\n" +
+            "    departmentCourse(cS5341PatternRecognition,computerScience).\n" +
+            "    departmentCourse(cS5356AdvDatabaseManagementSystems,computerScience).\n" +
+            "    departmentCourse(cS5379ParallelProcessing,computerScience).\n" +
+            "    departmentCourse(cS5388NeuralNetworks,computerScience).\n" +
+            "    departmentCourse(cS6343Cryptography,computerScience).\n" +
+            "    coursePrerequisites(designAndAnalysisOfAlgorithm,cS5381AnalysisOfAlgorithm).\n" +
+            "    coursePrerequisites(operatingSystems,cS5352AdvancedOperatingSystem).\n" +
 
-            "    coursePrerequisites(m2207engineeringDesignGraphics,numericalMethods).\n" +
-            "    coursePrerequisites(m5312controlTheory,materialScience).\n" +
-            "    coursePrerequisites(m5358biomaterials,introductionToDesign).\n" +
+            "    coursePrerequisites(numericalMethods,m2207engineeringDesignGraphics).\n" +
+            "    coursePrerequisites(materialScience,m5312controlTheory).\n" +
+            "    coursePrerequisites(introductionToDesign,m5358biomaterials).\n" +
 
-            "    coursePrerequisites(eCE5316PowerElectronics,digitalSignalProcessing).\n" +
-            "    coursePrerequisites(eCE5320DCDCConverterDesignandTest,imageProcessing).\n" +
-
-
-            "    accommodation(texastechuniversity,onCampus).\n" +
-            "    accommodation(texastechuniversity,offCampus).\n" +
+            "    coursePrerequisites(digitalSignalProcessing,eCE5316PowerElectronics).\n" +
+            "    coursePrerequisites(imageProcessing,eCE5320DCDCConverterDesignandTest).\n" +
 
 
-            "    affordableAccommodation(texastechuniversity,heritage).\n" +
-            "    affordableAccommodation(texastechuniversity,carltonHouse).\n" +
-            "    affordableAccommodation(texastechuniversity,parkEast)." ;
+            "    accommodation(onCampus,texasTechUniversity).\n" +
+            "    accommodation(offCampus,texasTechUniversity).\n" +
+
+
+            "    affordableAccommodation(heritage,texasTechUniversity).\n" +
+            "    affordableAccommodation(carltonHouse,texasTechUniversity).\n" +
+            "    affordableAccommodation(parkEast,texasTechUniversity)." ;
         // sorts
         var contstring = editor.split("sorts\n")[1].split("predicates\n");
         var sortstring = contstring[0].split('.');
@@ -240,7 +265,6 @@
             editor: editor
           },
           success: function(response) {
-            console.log(response);
              const answer = response || 'Sorry, I could not find an answer.';
              answerDiv.innerHTML = answer;
              answerBox.innerHTML = answer;
@@ -251,36 +275,6 @@
         });
 
 
-
-          
-          //$.post("http://localhost/ajax.php", { url: "http://wave.ttu.edu/" , data:data}, function (response) {
-                // Expected response : answer sets
-                //$.post("http://localhost/ajax/ajax.js",  function (response) {
-                //$.post("http://localhost/ajaxtest.php", function (response) {  
-                 // $.post("https://cors-anywhere.herokuapp.com/http://wave.ttu.edu/", data, function (response) {
-                  
-                   // console.log(response);
-                  
-                  
-                   // var html = document.createElement("html");
-                   // html.innerHTML = response;
-                    // contentRan
-                   // var answerstring = html.querySelector("p").textContent.replace(/X =/gm, "");
-                  //  var answerarr = answerstring.split("\n");
-                  //  answerarr.splice(-1,1);
-                 //   console.log(answerarr);
-                 //   var pre_string = "The answer to your question " + transcript + " is ";
-                 //   answerstring = contentRan.answer[answerarr[0].toLowerCase().trim()]==undefined?
-                 //       (pre_string + (answerarr.length==1?answerstring:(answerarr.splice(-1, 0, "and"),answerarr.join())))
-                 //       : generaspeak(contentRan.answer[answerarr[0].toLowerCase().trim()]);
-                //    console.log(answerstring);
-                  
-                //   const answer = answerstring || 'Sorry, I could not find an answer.';
-               //   answerDiv.innerHTML = answer;
-               //   answerBox.innerHTML = answer;
-               //   console.log(answer);
-                    
-               // });
             }
         }
         
