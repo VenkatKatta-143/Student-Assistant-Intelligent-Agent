@@ -265,6 +265,10 @@
             editor: editor
           },
           success: function(response) {
+            response = response.substring(response.indexOf('<p'));
+            response = "Here is the answer for your question: \n"+ response;
+            response = response.replaceAll("X =","");
+              console.log(response);
              const answer = response || 'Sorry, I could not find an answer.';
              answerDiv.innerHTML = answer;
              answerBox.innerHTML = answer;
